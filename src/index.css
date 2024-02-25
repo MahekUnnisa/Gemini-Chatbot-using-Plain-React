@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 
 body {
-    background: radial-gradient(rgb(0, 54, 54), black);
+    background-color: #14131a;
     margin: 0;
     padding: 0;
     font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
@@ -12,7 +12,7 @@ body {
 .header {
     background: transparent;
     color: white;
-    padding: 10px 20px;
+    padding: 5px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,21 +26,24 @@ body {
 
 .chat_container {
     width: 1000px;
-    /* flex-wrap: wrap; */
+    margin: 5px auto 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .input_container {
-    width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    width: 100vw;
+    padding: 30px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(1, 109, 106, 0.1);
-    background-color: rgba(255, 255, 255, 0.1);
-    position: absolute;
-    bottom: 20px;
+    position: fixed;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #14131a;
 }
 
 .input_container input {
@@ -50,12 +53,18 @@ body {
     border-radius: 5px 0 0 5px;
     outline: none;
     font-size: 16px;
+    box-shadow: 0 0 15px #383548;
+}
+
+.input_container input:focus {
+    box-shadow: 0 0 25px rgba(163, 159, 188, 0.9);
 }
 
 .input_container button {
-    padding: 10px 15px;
+    width: 80px;
+    padding: 10px 25px;
     border: none;
-    background-color: #009491;
+    background-color: #17009c;
     color: #ffffff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -64,23 +73,30 @@ body {
 }
 
 .input_container button:hover {
-    background-color: #004b47;
+    background-color: #0f015f;
 }
 
-.response_container {
-    width: 800px;
-    margin-bottom: 120px;
-    padding: 20px;
+
+.response_container,
+.query_container {
+    margin: 10px 0px;
+    padding: 6px 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(1, 109, 106, 0.1);
     background-color: rgba(255, 255, 255, 0.1);
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
     color: rgb(235, 252, 252);
-    float: left;
+    max-width: 60%;
+    height: fit-content;
+}
+
+.query_container {
+    text-align: right;
+    margin-left: auto;
+}
+
+.response_container {
+    text-align: left;
+    margin-right: auto;
 }
 
 .loader_container {
@@ -94,4 +110,12 @@ body {
     transform: translateX(-50%);
     display: flex;
     float: left;
+}
+
+.chat_item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }

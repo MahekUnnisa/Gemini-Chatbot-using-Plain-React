@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { getResponse } from '../utils/api'
-import Response from './Response'
+import Query from './Query'
 import Loader from './Loader'
+import Response from './Response'
+import { getResponse } from '../utils/api'
+import React, { useEffect, useState } from 'react'
 
 const Chat = () => {
     const [query, setQuery] = useState("")
-    const [response, setResponse] = useState("")
-    const [chat, setChat] = useState([])
+    const [chats, setChats] = useState([])
     const [loading, setLoading] = useState(false)
 
     const handleInputChange = (e) => {
@@ -15,46 +15,56 @@ const Chat = () => {
 
     const handleSendQuery = async () => {
         setLoading(true);
-        const response = await getResponse(query);
-        setResponse(response);
-        setQuery("");
-        setLoading(false);
+        try {
+            const response = await getResponse(query);
+            const newQuery = query;
+            const newMessage = { id: Date.now(), query: newQuery, response: response };
+            setQuery("");
+            setChats([...chats, newMessage]);
+            localStorage.setItem('chats', JSON.stringify([...chats, newMessage]));
+        } finally {
+            setLoading(false);
+        }
     }
-
 
     const handleKeydown = async (e) => {
         if (e.key === "Enter") {
             handleSendQuery();
         }
     }
+    useEffect(() => {
+        const allChats = localStorage.getItem('chats')
+        if (allChats) {
+            setChats(JSON.parse(allChats))
+        }
+    }, [])
 
     return (
         <div className="chat_container">
-            <div className="chat_queries">
+            {chats.map((chat) => (
+                <li key={chat.id} className="chat_item">
+                    <Query query={chat.query} />
+                    <Response response={chat.response} />
+                </li>))}
 
-            </div>
-            {loading == true ? (
-                <div className="loader_container">
-                    <Loader />
-                </div>
-            ) : (
-                response ? (
-                    <Response response={response} />
-                ) : (
-                    <><p>Something went wrong?</p></>
-                )
-            )
-            }
             <div className="input_container">
-                <input type="text"
-                    placeholder='Message Gemini'
+                <input
+                    type="text"
+                    placeholder="Message Gemini"
                     onChange={handleInputChange}
                     onKeyDown={handleKeydown}
-                    value={query} />
-                <button onClick={handleSendQuery}>Send</button>
+                    value={query}
+                />
+                <button onClick={handleSendQuery}>
+                    {loading ? (
+                        <Loader />
+                    ) : (
+                        'Send'
+                    )}
+                </button>
             </div>
         </div>
-    )
+    );
 }
 
 export default Chat
