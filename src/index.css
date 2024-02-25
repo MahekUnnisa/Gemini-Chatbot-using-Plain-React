@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+body {
+    background: radial-gradient(rgb(0, 54, 54), black);
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+
+.header {
+    background: transparent;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.chat_container {
+    width: 1000px;
+    /* flex-wrap: wrap; */
+}
+
+.input_container {
+    width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(1, 109, 106, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex
+}
+
+.input_container input {
+    width: 800px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+.input_container button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #009491;
+    color: #ffffff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.input_container button:hover {
+    background-color: #004b47;
+}
+
+.response_container {
+    width: 800px;
+    margin-bottom: 120px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(1, 109, 106, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    color: rgb(235, 252, 252);
+    float: left;
+}
+
+.loader_container {
+    width: 800px;
+    margin-bottom: 100px;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    float: left;
+}
