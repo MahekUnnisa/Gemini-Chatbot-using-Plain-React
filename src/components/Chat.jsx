@@ -41,12 +41,16 @@ const Chat = () => {
 
     return (
         <div className="chat_container">
-            {chats.map((chat) => (
-                <li key={chat.id} className="chat_item">
-                    <Query query={chat.query} />
-                    <Response response={chat.response} />
-                </li>))}
-
+            {chats.length !== 0 ? (
+                chats.map((chat) => (
+                    <li key={chat.id} className="chat_item">
+                        <Query query={chat.query} />
+                        <Response response={chat.response} />
+                    </li>
+                ))
+            ) : (
+                <p className="no__chats_header">__Gemini__</p>
+            )}
             <div className="input_container">
                 <input
                     type="text"
