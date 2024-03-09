@@ -16,13 +16,19 @@ const Chat = () => {
     const handleSendQuery = async () => {
         setLoading(true);
         try {
-            const response = await getResponse(query);
-            console.log(response);
             const newQuery = query;
-            const newMessage = { id: Date.now(), query: newQuery, response: response };
+            const newMessage = { id: Date.now(), query: newQuery, response: '' };
+            const response = await getResponse(query, chats);
+            newMessage.response = response;
             setQuery("");
             setChats([...chats, newMessage]);
-            localStorage.setItem('chats', JSON.stringify([...chats, newMessage]));
+            const updatedChats = [...chats];
+            updatedChats.push(newMessage);
+            setChats(updatedChats);
+
+            localStorage.setItem('chats', JSON.stringify(updatedChats));
+
+            setQuery("");
         } finally {
             setLoading(false);
         }

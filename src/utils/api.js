@@ -3,26 +3,32 @@ import axios from "axios";
 const API_URL = `${process.env.REACT_APP_API_BASE_URL}/models/gemini-pro:generateContent`
 const API_KEY = process.env.REACT_APP_API_KEY
 
-export const getFormattedJsonInput = (query) => {
-    var data = JSON.stringify({
-        "contents": [
+const getFormattedJsonInput = async (query, chats) => {
+    const contents = chats.map(chat => {
+        return [
             {
-                "role": "user",
-                "parts": [
-                    {
-                        "text": query
-                    }
-                ]
+                role: 'user',
+                parts: [{ text: chat.query }]
+            },
+            {
+                role: 'model',
+                parts: [{ text: chat.response }]
             }
-        ]
+        ];
+    }).flat();
+
+    await contents.push({
+        role: 'user',
+        parts: [{ text: query }]
     });
 
+    const data = JSON.stringify({ contents });
     return data
 }
 
-export const getResponse = async (query) => {
+export const getResponse = async (query, chats) => {
     try {
-        var data = await getFormattedJsonInput(query);
+        var data = await getFormattedJsonInput(query, chats);
         var headers = {
             'x-goog-api-key': API_KEY,
             'Content-Type': 'application/json',
