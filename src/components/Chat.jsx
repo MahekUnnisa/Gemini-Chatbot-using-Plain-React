@@ -17,6 +17,7 @@ const Chat = () => {
         setLoading(true);
         try {
             const response = await getResponse(query);
+            console.log(response);
             const newQuery = query;
             const newMessage = { id: Date.now(), query: newQuery, response: response };
             setQuery("");

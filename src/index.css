@@ -5,10 +5,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    overflow-y: hidden;
+    min-height: 80vh;
 }
-
 
 .header {
     background: transparent;
@@ -78,7 +76,18 @@ body {
 }
 
 
-.response_container,
+.response_container {
+    margin: 10px 0px;
+    padding: 6px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(1, 109, 106, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(235, 252, 252);
+    max-width: 60%;
+    min-width: 60%;
+    height: fit-content;
+}
+
 .query_container {
     margin: 10px 0px;
     padding: 6px 20px;
@@ -130,4 +139,41 @@ body {
     text-align: center;
     color: #fff;
     user-select: none;
+}
+
+pre {
+    margin: 1px 1px !important;
+}
+
+pre div {
+    border-radius: 4px;
+}
+
+.response_container pre div div {
+    padding: 10px 10px !important;
+}
+
+p a {
+    color: #01c5c5;
+    margin: 0 4px;
+}
+
+.response_container p div {
+    display: inline-block !important;
+    overflow-x: hidden;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.response_container li p {
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.response_container li p div div {
+    padding: 4px 8px !important;
+}
+
+div.response_container pre:first-child {
+    padding: 20px 10px;
 }
